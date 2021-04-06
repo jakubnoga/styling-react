@@ -1,0 +1,11 @@
+{
+  "name": "styling-react",
+  "version": "1.0.0",
+  "description": "Different methods to style React components",
+  "main": "./src/index.tsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jakub Noga",
+  "license": "MIT"
+}

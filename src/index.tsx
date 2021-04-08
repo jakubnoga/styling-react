@@ -1,15 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "../Skeleton/css/normalize.css";
-import "./index.css";
+// import "./index.css";
 import { Button, PrimaryButton } from "./components/button";
-import { defaultTheme, ThemeContext } from "./theme";
+import { defaultTheme } from "./theme";
 import { Column, Container, Row } from "./components/container";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
 
 const App = () => (
   <Container>
     <Row>
-      <Column first cols={3}>
+      <Column cols={3}>
         <Button>Button</Button>
       </Column>
       <Column cols={4}>
@@ -23,7 +24,7 @@ const App = () => (
       </Column>
     </Row>
     <Row>
-      <Column first cols={3}>
+      <Column cols={3}>
         <Button>Button</Button>
       </Column>
       <Column cols={4}>
@@ -39,9 +40,27 @@ const App = () => (
   </Container>
 );
 
+const GlobalStyle = createGlobalStyle`
+  html {
+    font-size: 62.5%;
+  }
+
+  body {
+    font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
+    line-height: 1.6;
+    font-weight: 400;
+    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial,
+      sans-serif;
+    color: #222;
+  }
+`
+
+
+
 ReactDOM.render(
-  <ThemeContext.Provider value={defaultTheme}>
+  <ThemeProvider theme={defaultTheme}>
+    <GlobalStyle></GlobalStyle>
     <App />
-  </ThemeContext.Provider>,
+  </ThemeProvider>,
   document.getElementById("app")
 );

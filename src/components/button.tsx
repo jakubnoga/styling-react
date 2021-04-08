@@ -1,46 +1,47 @@
-import React, { useContext } from "react";
-import { ThemeContext } from "../theme";
-
-type HTMLButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
-
-function useButtonStyle(primary = false): React.CSSProperties {
-  const ctx = useContext(ThemeContext);
-
-  return {
-    display: "inline-block",
-    height: "38px",
-    padding: "0 30px",
-    color: primary ? ctx.textColor : ctx.primaryTextColor,
-    textAlign: "center",
-    fontSize: "11px",
-    fontWeight: 600,
-    lineHeight: "38px",
-    letterSpacing: ".1rem",
-    textTransform: "uppercase",
-    textDecoration: "none",
-    whiteSpace: "nowrap",
-    backgroundColor: primary ? ctx.primaryColor : "transparent",
-    borderRadius: "4px",
-    border: `1px solid ${primary ? ctx.primaryColor : ctx.dividerColor}`,
-    cursor: "pointer",
-    boxSizing: "border-box",
-  };
-}
+import React from "react";
+import styled from "styled-components";
 
 export interface ButtonProps {
   primary?: boolean;
 }
 
-export const Button = <P extends HTMLButtonProps & ButtonProps>(props: P) => {
-  const { primary, ...rest } = props;
+export const Button = styled.button`
+  display: inline-block;
+  height: 38px;
+  padding: 0 30px;
+  color: ${(props) => props.theme.primaryTextColor};
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid ${(props) => props.theme.dividerColor};
+  cursor: pointer;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  
+  :focus,
+  :hover {
+    color: #333;
+    border-color: #888;
+    outline: 0;
+  }
+`;
 
-  return (
-    <button style={useButtonStyle(primary)} {...rest}>
-      {props.children}
-    </button>
-  );
-};
+export const PrimaryButton = styled(Button)`
+  color: #fff;
+  background-color: ${(props) => props.theme.primaryColor};
+  border-color: ${(props) => props.theme.primaryColor};
 
-export const PrimaryButton = <P extends HTMLButtonProps & ButtonProps>(
-  props: P
-) => <Button primary>{props.children}</Button>;
+  :focus,
+  :hover {
+    color: #fff;
+    background-color: ${(props) => props.theme.primaryDarkColor};
+    border-color: ${(props) => props.theme.primaryDarkColor};
+  }
+`;

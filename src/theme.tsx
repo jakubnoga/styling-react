@@ -1,5 +1,3 @@
-import react from 'react';
-
 export interface Theme {
   primaryColor: string;
   primaryLightColor: string;
@@ -21,5 +19,3 @@ export const defaultTheme: Theme = {
   secondaryTextColor: '#757575',
   dividerColor: '#BDBDBD',
 }
-
-export const ThemeContext = react.createContext(defaultTheme);

@@ -4,6 +4,7 @@
   "description": "Different methods to style React components",
   "main": "./src/index.tsx",
   "scripts": {
+    "start": "parcel ./src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jakub Noga",
